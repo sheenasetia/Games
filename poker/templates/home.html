@@ -1,0 +1,122 @@
+<html>
+<head>
+	<style type="text/css">
+		body{
+			background-image: url("/static/images/background.png");			
+			background-size: cover;
+			font-family: cursive;
+    		color: black;
+    		font-weight: bolder;
+		}
+		div
+		{
+			text-align: center;
+		}
+		button
+		{
+			width: 100px;
+			height: 35px;
+			padding-bottom: 17;
+			background: #9bf4ff;
+			color: #009688;
+			font-weight: bold;
+			border-radius: 5px;
+			border-style: none; 
+		}
+	</style>
+</head>
+	
+	<body>
+		<br>
+	<div>
+		<h1 style="color: #ffeb3b;">POKER</h1>
+	</div>
+	<br>
+	<div align="center" id="p_u1">
+		<h2>User1</h2>
+			<div id="u1">
+				{% for card in user1_card11 %}
+				<img width=100 height=100 src="/static/images/{{card}}.png">
+				{% endfor %}
+			</div>
+	</div>
+	<div align="center" id="p_u2">
+		<h2>Computer</h2>
+		<div id="u2">
+				{% for card in user2_card21 %}
+				<img width=100 height=100 src="/static/images/{{card}}.png">
+				{% endfor %}
+			</div>
+	</div>
+	<br>	
+	<div align="center">
+		<button onclick="user1()">SHOW CARDS</button>
+		<button onclick="user2()">OPPONENT CARDS</button>
+		<button onclick="fun1()">RESULTS</button>
+		<button onClick="window.location.reload()">TRY AGAIN</button>
+	</div>
+	<div>
+	<h2 id="1" style="color: #ffeb3b;"></h1>	
+</div>
+</br>
+<script type="text/javascript">
+	function user1()
+	{
+		var x=document.createElement("div");
+		var text1=document.createTextNode("{% for card in user1_card12 %}");
+		x.appendChild(text1);
+		var y=document.createElement("img");
+		y.src="/static/images/{{card}}.png";
+		y.width="100";
+		y.height="100";
+		x.appendChild(y);
+		var z=document.createTextNode("{% endfor %}");
+		x.appendChild(z);
+		var parent=document.getElementById("p_u1");
+		var old=document.getElementById("u1");
+		parent.replaceChild(x,old);
+	}
+	function user2()
+	{
+		var x=document.createElement("div");
+		var text1=document.createTextNode("{% for card in user2_card22 %}");
+		x.appendChild(text1);
+		var y=document.createElement("img");
+		y.src="/static/images/{{card}}.png";
+		y.width="100";
+		y.height="100";
+		x.appendChild(y);
+		var z=document.createTextNode("{% endfor %}");
+		x.appendChild(z);
+		var parent=document.getElementById("p_u2");
+		var old=document.getElementById("u2");
+		parent.replaceChild(x,old);
+	}
+	/*function hide()
+	{
+		var x=document.createElement("div");
+		var text1=document.createTextNode("{% for card in user1_card11 %}");
+		x.appendChild(text1);
+		var y=document.createElement("img");
+		y.src="/static/images/{{card}}.png";
+		y.width="100";
+		y.height="100";
+		x.appendChild(y);
+		var z=document.createTextNode("{% endfor %}");
+		x.appendChild(z);
+		var parent1=document.getElementById("p_u1");
+		var old1=document.getElementById("u1");
+		parent1.replaceChild(x,old1);
+		var parent2=document.getElementById("p_u2");
+		var old2=document.getElementById("u2");
+		parent2.replaceChild(x,old2);
+	}*/
+	function fun1() {
+		var x=document.getElementById("1");
+		x.innerHTML="winner is {{winner}}";
+	}
+</script>
+</body>
+
+
+</html>
